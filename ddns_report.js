@@ -6,7 +6,7 @@ const fs = require('fs');
 // npm install nodemailer --save
 const nodemailer  = require('nodemailer');
 
-const ipFile = 'root/projects/server/cpc/currentip';
+const ipFile = '/root/projects/server/cpc/currentip';
 // 创建http server，并传入回调函数:
 var server = http.createServer(function (request, response) {
     // 回调函数接收request和response对象,
@@ -26,6 +26,7 @@ var server = http.createServer(function (request, response) {
             console.log('prevIp:', prevIp);
             if (prevIp !== ip) {
                 reportDDNS(ip);
+		// may replace with a system environment variable
 
                 fs.writeFile(ipFile, ip, (err) => {
                     if (err) {
